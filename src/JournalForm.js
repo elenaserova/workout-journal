@@ -27,13 +27,13 @@ class JournalForm extends Component {
 
   handleChange = (event, i) => {
     event.preventDefault();
-    console.log(event.target.name);
-    console.log(event.target.value);
+    // console.log(event.target.name);
+    // console.log(event.target.value);
     const newLine = [...this.state.lines];
     newLine[i][event.target.name] = event.target.value
-    console.log(this.state.lines)
-    console.log(newLine)
-    console.log(newLine[i])
+    // console.log(this.state.lines)
+    // console.log(newLine)
+    // console.log(newLine[i])
 
     this.setState({
       lines: newLine
@@ -66,10 +66,10 @@ class JournalForm extends Component {
       })
 
     }
-    console.log(this.state.date);
-    console.log(this.state.lines.exercise);
-    console.log(this.state.lines.reps);
-    console.log(this.state.lines.sets);
+    // console.log(this.state.date);
+    // console.log(this.state.lines.exercise);
+    // console.log(this.state.lines.reps);
+    // console.log(this.state.lines.sets);
 
   }
 
@@ -91,7 +91,7 @@ class JournalForm extends Component {
     // this.state.log.push(lineToBeSaved);
     // console.log(lineToBeSaved);
     // console.log(this.state.log);
-    console.log(this.state.lines)
+    // console.log(this.state.lines)
 
   }
 
