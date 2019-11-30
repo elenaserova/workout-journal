@@ -8,7 +8,8 @@ class Test extends Component {
     return (
       <div>
 
-        <label htmlFor='exercise'>1.</label>
+
+        <label htmlFor='exercise'>-</label>
         <input
           type='text'
           name='exercise'

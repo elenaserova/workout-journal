@@ -3,19 +3,13 @@ import './App.css';
 import firebase from "./firebase.js";
 import Header from './Header';
 import JournalForm from './JournalForm';
-import ExerciseAllData from './ExerciseAllData';
-// import Entry from './Entry';
+
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      journal: [],
-      date: '',
-      // exercise: '',
-      // sets: 0,
-      // reps: 0,
-      // weights: 0,
+      journal: []
     };
   }
 
@@ -26,54 +20,56 @@ class App extends Component {
 
     // listen on the dbref for when the value of the database changes
     dbRef.on("value", snapshot => {
-      const entries = snapshot.val();
-      console.log(entries);
+      const logs = snapshot.val();
+      console.log(logs);
+      // const newEntry = [];
+      // for (let key in entries) {
+      //   newEntry.push({
+      //     entryId: entries[key],
+      //     entryDate: this.state.date,
+      //     logContent: this.state.lines,
+
+      //   });
+      // }
+      // this.setState({
+      //   log: newEntry
+      // });
     })
   }
 
 
-
-
-  // inputValidation = () => {
-
-  //   if (
-  //     this.state.date === '' ||
-  //     this.state.exercise === '' ||
-  //     this.state.sets === 0 ||
-  //     this.state.reps === 0
-
-  //   )
-  //     return false;
-
-  //   else {
-  //     return true;
-  //   }
-  // };
-
-  handleClick = (event) => {
+  handleClick = (event, log) => {
     event.preventDefault();
     console.log('i was clicked')
+    // i need to take all the objects from the array called "lines", add date object and save them to new array called log
+    const newLogToBeAdded = [];
+    newLogToBeAdded.push(log);
+    this.setState({
+      journal: newLogToBeAdded
+
+    })
+    console.log(newLogToBeAdded)
+    console.log(log)
+    console.log(this.state.journal)
+    //save to firebise
+    const dbRef = firebase.database().ref();
+    dbRef.push(newLogToBeAdded)
+    //then display on the page 
+    // this.state.dbRef.push({
+
+
+    // });
 
 
   }
-
-
-
-
 
   render() {
     return (
       <div className='wrapper'>
         <Header />
         <JournalForm
-          date={this.state.date}
-          handleChange={this.handleChange}
           handleClick={this.handleClick}
-          handleAddMore={this.handleAddMore}
-          exercise={this.state.exercise}
-          sets={this.state.sets}
-          reps={this.state.reps}
-          weights={this.state.weights}
+
         />
 
       </div>
