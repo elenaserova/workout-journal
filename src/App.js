@@ -9,7 +9,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      journal: []
+      journal: [],
+      log: []
     };
   }
 
@@ -40,10 +41,24 @@ class App extends Component {
   }
 
 
-  handleClick = (event, log) => {
+  handleClick = (event, date, lines) => {
     event.preventDefault();
+
+    const totalLog = [];
+    totalLog.push(date);
+    lines.map((line) => {
+      totalLog.push(line)
+    })
+    console.log(totalLog);
+    this.setState({
+      log: totalLog
+
+    })
+
     const newLogToBeAdded = [];
-    newLogToBeAdded.push(log);
+    newLogToBeAdded.push(totalLog);
+    console.log(newLogToBeAdded);
+    console.log(totalLog)
     //save to firebise
     const dbRef = firebase.database().ref();
     dbRef.push(newLogToBeAdded)
@@ -64,7 +79,11 @@ class App extends Component {
           {this.state.journal.map((dailyLog, i) => {
             console.log(dailyLog);
             //need to massage data to get access to all exercises
-            return (<div className='log'><p key={i}>Date: {dailyLog.entry[0][0]}</p><p>Exercise:{dailyLog.entry[0][1].exercise} {dailyLog.entry[0][1].sets}{dailyLog.entry[0][1].reps}{dailyLog.entry[0][1].weights}</p></div>)
+            return (<div className='log'><p key={i}>Date: {dailyLog.entry[0][0]}</p>
+              {dailyLog.entry[0].map((activity) => {
+                return (<div><p>Exercise:{activity.exercise} {activity.sets} sets {activity.reps} reps {activity.weights} lb</p></div>)
+              })}
+            </div>)
           })}
         </div>
 

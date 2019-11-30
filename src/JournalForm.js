@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Test from "./ExerciseAllDataTest";
+import ExerciseAllData from "./ExerciseAllData";
 class JournalForm extends Component {
   constructor() {
     super()
     this.state = {
       date: {},
-      log: [],
+      // log: [],
       lines: [{
         exercise: '',
         sets: 0,
@@ -27,13 +27,9 @@ class JournalForm extends Component {
 
   handleChange = (event, i) => {
     event.preventDefault();
-    // console.log(event.target.name);
-    // console.log(event.target.value);
     const newLine = [...this.state.lines];
     newLine[i][event.target.name] = event.target.value
-    // console.log(this.state.lines)
-    // console.log(newLine)
-    // console.log(newLine[i])
+
 
     this.setState({
       lines: newLine
@@ -66,10 +62,6 @@ class JournalForm extends Component {
       })
 
     }
-    // console.log(this.state.date);
-    // console.log(this.state.lines.exercise);
-    // console.log(this.state.lines.reps);
-    // console.log(this.state.lines.sets);
 
   }
 
@@ -82,34 +74,13 @@ class JournalForm extends Component {
     if (this.state.validInput === true) {
 
       this.pushNewLine();
-      this.allDataToLog();
+
 
     } else {
       alert('You forgot something...please check your entry!')
     }
-    // const lineToBeSaved = this.state.lines;
-    // this.state.log.push(lineToBeSaved);
-    // console.log(lineToBeSaved);
-    // console.log(this.state.log);
-    // console.log(this.state.lines)
 
   }
-
-  allDataToLog = () => {
-    const totalLog = [];
-    totalLog.push(this.state.date);
-    this.state.lines.map((line) => {
-      totalLog.push(line)
-    })
-    console.log(totalLog);
-    this.setState({
-      log: totalLog
-
-    })
-
-  }
-
-
 
 
 
@@ -124,7 +95,7 @@ class JournalForm extends Component {
 
           {this.state.lines.map((line, i) => {
             return (
-              <Test
+              <ExerciseAllData
                 handleChange={(event) => { this.handleChange(event, i) }}
                 exercise={this.state.lines[i].exercise}
                 sets={this.state.lines[i].sets}
@@ -135,7 +106,7 @@ class JournalForm extends Component {
 
           <button onClick={(event) => { this.handleAddMore(event) }}>Add more exercises</button>
 
-          <button onClick={(event) => this.props.handleClick(event, this.state.log)}>Log workout</button>
+          <button onClick={(event) => this.props.handleClick(event, this.state.date, this.state.lines)}>Log workout</button>
 
 
 
