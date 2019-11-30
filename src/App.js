@@ -49,7 +49,7 @@ class App extends Component {
     lines.map((line) => {
       totalLog.push(line)
     })
-    console.log(totalLog);
+    console.log(lines);
     this.setState({
       log: totalLog
 
@@ -77,17 +77,29 @@ class App extends Component {
         />
         <div>
           {this.state.journal.map((dailyLog, i) => {
-            console.log(dailyLog);
-            //need to massage data to get access to all exercises
-            return (<div className='log'><p key={i}>Date: {dailyLog.entry[0][0]}</p>
-              {dailyLog.entry[0].map((activity) => {
-                return (<div><p>Exercise:{activity.exercise} {activity.sets} sets {activity.reps} reps {activity.weights} lb</p></div>)
-              })}
-            </div>)
+            console.log(dailyLog.entry[0][0])
+            return (
+
+
+              < div className='log' key={i} >
+                <p>Date:{dailyLog.entry[0][0]}</p>
+                {console.log(dailyLog.entry[0][0])}
+
+                {
+                  dailyLog.entry[0].map((activity) => {
+                    return (
+
+                      <div><p>Exercise:{activity.exercise} {activity.sets} sets {activity.reps} reps {activity.weights} lb</p>
+                        {console.log(activity)}
+                      </div>)
+                  })
+                }
+              </div>
+            )
           })}
         </div>
 
-      </div>
+      </div >
     );
   }
 

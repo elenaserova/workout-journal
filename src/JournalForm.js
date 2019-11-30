@@ -4,7 +4,7 @@ class JournalForm extends Component {
   constructor() {
     super()
     this.state = {
-      date: {},
+      date: '',
       // log: [],
       lines: [{
         exercise: '',
@@ -89,7 +89,7 @@ class JournalForm extends Component {
       <div className='journal' id="journal">
         <form action='submit'>
           <label htmlFor='date' className='date'>Date:</label>
-          <input type='date' name='date' onChange={this.handleDateChange} value={this.date} />
+          <input type='date' name='date' required onChange={this.handleDateChange} value={this.date} />
 
 
 
