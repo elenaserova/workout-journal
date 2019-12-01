@@ -46,10 +46,7 @@ class App extends Component {
 
     const totalLog = [];
     totalLog.push(date);
-    lines.map((line) => {
-      totalLog.push(line)
-    })
-    console.log(lines);
+    totalLog.push(lines);
     this.setState({
       log: totalLog
 
@@ -62,8 +59,6 @@ class App extends Component {
     //save to firebise
     const dbRef = firebase.database().ref();
     dbRef.push(newLogToBeAdded)
-
-
 
   }
 
@@ -83,10 +78,10 @@ class App extends Component {
 
               < div className='log' key={i} >
                 <p>Date:{dailyLog.entry[0][0]}</p>
-                {console.log(dailyLog.entry[0][0])}
+                {console.log(dailyLog.entry[0][1])}
 
                 {
-                  dailyLog.entry[0].map((activity) => {
+                  dailyLog.entry[0][1].map((activity) => {
                     return (
 
                       <div><p>Exercise:{activity.exercise} {activity.sets} sets {activity.reps} reps {activity.weights} lb</p>

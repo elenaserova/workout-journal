@@ -5,7 +5,6 @@ class JournalForm extends Component {
     super()
     this.state = {
       date: '',
-      // log: [],
       lines: [{
         exercise: '',
         sets: 0,
@@ -84,12 +83,14 @@ class JournalForm extends Component {
 
 
 
+
+
   render() {
     return (
       <div className='journal' id="journal">
         <form action='submit'>
           <label htmlFor='date' className='date'>Date:</label>
-          <input type='date' name='date' required onChange={this.handleDateChange} value={this.date} />
+          <input type='date' name='date' required onChange={this.handleDateChange} value={this.state.date} />
 
 
 
@@ -106,7 +107,21 @@ class JournalForm extends Component {
 
           <button onClick={(event) => { this.handleAddMore(event) }}>Add more exercises</button>
 
-          <button onClick={(event) => this.props.handleClick(event, this.state.date, this.state.lines)}>Log workout</button>
+          <button onClick={(event) => {
+            this.props.handleClick(event, this.state.date, this.state.lines);
+            this.setState(prevState => ({
+              date: '',
+              lines: [{
+                exercise: '',
+                sets: 0,
+                reps: 0,
+                weights: 0,
+              },],
+              validInput: true
+
+            }))
+          }
+          }>Log workout</button>
 
 
 
