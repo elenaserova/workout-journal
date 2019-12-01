@@ -10,8 +10,7 @@ class JournalForm extends Component {
         sets: 0,
         reps: 0,
         weights: 0,
-      },],
-      validInput: false
+      },]
     }
   }
 
@@ -28,6 +27,8 @@ class JournalForm extends Component {
     event.preventDefault();
     const newLine = [...this.state.lines];
     newLine[i][event.target.name] = event.target.value
+    console.log(newLine[i][event.target.name])
+    console.log(event.target.value)
 
 
     this.setState({
@@ -46,47 +47,52 @@ class JournalForm extends Component {
 
   inputValidation = () => {
 
-    if (
-      this.state.date !== ''
-      // this.state.lines[i].exercise === '' ||
-      // this.state.lines[i].sets === 0 ||
-      // this.state.lines[i].reps === 0
-    ) {
-      this.setState({
-        validInput: true
+    this.state.lines.forEach((line) => {
+      console.log(this.state.lines)
+      if (
 
-      })
-    } else {
-      this.setState({
-        validInput: false
+        // this.state.date !== '' &&
+        line.exercise !== '' &&
+        line.sets !== 0 &&
+        line.reps !== 0
 
-      })
-    }
-    console.log(this.state.date)
-    console.log(this.state.validInput)
+      ) {
+        this.pushNewLine();
+        console.log(this.state.lines)
+      }
+      else {
+        alert('You forgot something')
+        return
+
+      }
+
+    })
+
   }
 
+  // if (
+  //   this.state.date !== '' ||
+  //   // this.state.lines.exercise !== '' ||
+  //   // this.state.lines.sets !== 0 ||
+  //   // this.state.lines.reps !== 0
+
+  // ) {
+  //   this.pushNewLine();
+  // }
+  // else {
+
+  //   alert('You forgot something...please check your entry!')
+  //   return
+  // }
+  // console.log(this.state.lines.exercise.target.value)
 
 
 
   handleAddMore = (event) => {
     event.preventDefault();
     this.inputValidation();
-    if (this.state.validInput === true) {
-
-      this.pushNewLine();
-
-
-    } else {
-      alert('You forgot something...please check your entry!')
-      return
-    }
-
 
   }
-
-
-
 
 
   render() {
@@ -121,8 +127,7 @@ class JournalForm extends Component {
                 sets: 0,
                 reps: 0,
                 weights: 0,
-              },],
-              validInput: true
+              },]
 
             }))
           }
