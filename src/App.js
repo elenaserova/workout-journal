@@ -44,6 +44,7 @@ class App extends Component {
   handleClick = (event, date, lines) => {
     event.preventDefault();
 
+
     const totalLog = [];
     totalLog.push(date);
     totalLog.push(lines);
@@ -51,6 +52,8 @@ class App extends Component {
       log: totalLog
 
     })
+
+
 
     const newLogToBeAdded = [];
     newLogToBeAdded.push(totalLog);
@@ -60,24 +63,20 @@ class App extends Component {
     const dbRef = firebase.database().ref();
     dbRef.push(newLogToBeAdded)
 
+
   }
+
+
+
 
   removeEntry = (event) => {
     const question = window.confirm("Are you sure?");
-    if (question == true) {
+    if (question === true) {
       const dbRef = firebase.database().ref();
       dbRef.child(event.target.id).remove();
     } else {
       return
     }
-
-
-
-
-
-    console.log(event.target.id)
-    // const dbRef = firebase.database().ref();
-    // dbRef.child(event.target.id).remove();
   }
 
   render() {
@@ -88,13 +87,13 @@ class App extends Component {
           handleClick={this.handleClick}
 
         />
-        <div>
+        <div className="logsContainer">
           {this.state.journal.map((dailyLog, i) => {
             return (
 
 
               < div className='log' key={i} >
-                <p>Date:{dailyLog.entry[0][0]}</p>
+                <p>Date: {dailyLog.entry[0][0]}</p>
 
                 {
                   dailyLog.entry[0][1].map((activity) => {
@@ -102,7 +101,7 @@ class App extends Component {
 
 
                       <ul>
-                        <li>Exercise:{activity.exercise} {activity.sets} sets {activity.reps} reps {activity.weights} lb</li>
+                        <li>{activity.exercise} {activity.sets} sets {activity.reps} reps {activity.weights} lb</li>
                       </ul>
                     )
                   })

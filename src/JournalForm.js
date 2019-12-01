@@ -45,50 +45,33 @@ class JournalForm extends Component {
   }
 
   inputValidation = () => {
-    console.log(this.state.lines.exercise)
-    this.state.lines.map((line, i) => {
-      console.log(this.state.lines[i].exercise)
-      if (
-        this.state.lines[i].exercise === '' ||
-        this.state.lines[i].sets === 0 ||
-        this.state.lines[i].reps === 0
-      ) {
-        return false
-      } else {
-        this.setState({
-          validInput: true
 
-        })
-      }
+    if (
+      this.state.date !== ''
+      // this.state.lines[i].exercise === '' ||
+      // this.state.lines[i].sets === 0 ||
+      // this.state.lines[i].reps === 0
+    ) {
+      this.setState({
+        validInput: true
 
-    })
+      })
+    } else {
+      this.setState({
+        validInput: false
 
-    // if (
-    //   this.state.date === ''
-    // this.state.lines.exercise === '' ||
-    // this.state.lines.sets === 0 ||
-    // this.state.lines.reps === 0
-
-    // ) {
-    //   return false
-
-    // } else {
-
-    //   this.setState({
-    //     validInput: true
-
-    //   })
-
-    // }
-
+      })
+    }
+    console.log(this.state.date)
+    console.log(this.state.validInput)
   }
+
+
 
 
   handleAddMore = (event) => {
     event.preventDefault();
-    console.log('i was clicked as well');
     this.inputValidation();
-    console.log(this.state.validInput)
     if (this.state.validInput === true) {
 
       this.pushNewLine();
@@ -96,7 +79,9 @@ class JournalForm extends Component {
 
     } else {
       alert('You forgot something...please check your entry!')
+      return
     }
+
 
   }
 
@@ -108,8 +93,9 @@ class JournalForm extends Component {
     return (
       <div className='journal' id="journal">
         <form action='submit'>
-          <label htmlFor='date' className='date'>Date:</label>
-          <input type='date' name='date' required onChange={this.handleDateChange} value={this.state.date} />
+          <label htmlFor='date' className='date'>Date: </label>
+          <input type='date' name='date' onChange={this.handleDateChange} value={this.state.date} />
+          <p>Exercises:</p>
 
 
 

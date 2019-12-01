@@ -9,23 +9,25 @@ class ExerciseAllData extends Component {
       <div>
 
 
-        <label htmlFor='exercise'>-</label>
+        <label htmlFor='exercise'></label>
         <input
           type='text'
           name='exercise'
           placeholder="e.g. squats"
-          required
+          // required
           onChange={this.props.handleChange}
           value={this.props.exercise}
+          className="large"
         />
 
         <input
           type='number'
           min="1"
           name='sets'
-          required
+          // required
           onChange={this.props.handleChange}
           value={this.props.sets}
+          className="small"
         />
         <label htmlFor='sets'>sets</label>
 
@@ -33,9 +35,10 @@ class ExerciseAllData extends Component {
           type='number'
           min="1"
           name='reps'
-          required
+          // required
           onChange={this.props.handleChange}
           value={this.props.reps}
+          className="small"
         />
         <label htmlFor='reps'>reps</label>
 
@@ -46,6 +49,7 @@ class ExerciseAllData extends Component {
           value='0'
           onChange={this.props.handleChange}
           value={this.props.weights}
+          className="small"
         />
         <label htmlFor='weights'>lb</label>
       </div>
