@@ -62,6 +62,24 @@ class App extends Component {
 
   }
 
+  removeEntry = (event) => {
+    const question = window.confirm("Are you sure?");
+    if (question == true) {
+      const dbRef = firebase.database().ref();
+      dbRef.child(event.target.id).remove();
+    } else {
+      return
+    }
+
+
+
+
+
+    console.log(event.target.id)
+    // const dbRef = firebase.database().ref();
+    // dbRef.child(event.target.id).remove();
+  }
+
   render() {
     return (
       <div className='wrapper'>
@@ -72,23 +90,24 @@ class App extends Component {
         />
         <div>
           {this.state.journal.map((dailyLog, i) => {
-            console.log(dailyLog.entry[0][0])
             return (
 
 
               < div className='log' key={i} >
                 <p>Date:{dailyLog.entry[0][0]}</p>
-                {console.log(dailyLog.entry[0][1])}
 
                 {
                   dailyLog.entry[0][1].map((activity) => {
                     return (
 
-                      <div><p>Exercise:{activity.exercise} {activity.sets} sets {activity.reps} reps {activity.weights} lb</p>
-                        {console.log(activity)}
-                      </div>)
+
+                      <ul>
+                        <li>Exercise:{activity.exercise} {activity.sets} sets {activity.reps} reps {activity.weights} lb</li>
+                      </ul>
+                    )
                   })
                 }
+                <button onClick={this.removeEntry} id={dailyLog.entryId}> Delete Log</button>
               </div>
             )
           })}

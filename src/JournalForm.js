@@ -11,7 +11,7 @@ class JournalForm extends Component {
         reps: 0,
         weights: 0,
       },],
-      validInput: true
+      validInput: false
     }
   }
 
@@ -45,22 +45,41 @@ class JournalForm extends Component {
   }
 
   inputValidation = () => {
-    if (
-      this.state.date === '' ||
-      this.state.lines.exercise === '' ||
-      this.state.lines.sets === 0 ||
-      this.state.lines.reps === 0
-    ) {
-      return false
+    console.log(this.state.lines.exercise)
+    this.state.lines.map((line, i) => {
+      console.log(this.state.lines[i].exercise)
+      if (
+        this.state.lines[i].exercise === '' ||
+        this.state.lines[i].sets === 0 ||
+        this.state.lines[i].reps === 0
+      ) {
+        return false
+      } else {
+        this.setState({
+          validInput: true
 
-    } else {
+        })
+      }
 
-      this.setState({
-        validInput: true
+    })
 
-      })
+    // if (
+    //   this.state.date === ''
+    // this.state.lines.exercise === '' ||
+    // this.state.lines.sets === 0 ||
+    // this.state.lines.reps === 0
 
-    }
+    // ) {
+    //   return false
+
+    // } else {
+
+    //   this.setState({
+    //     validInput: true
+
+    //   })
+
+    // }
 
   }
 
