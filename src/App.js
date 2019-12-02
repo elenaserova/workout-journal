@@ -3,9 +3,9 @@ import './App.css';
 import firebase from "./firebase.js";
 import Header from './Header';
 import JournalForm from './JournalForm';
-import uuidv4 from 'uuid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import uuidv4 from 'uuid'
 
 
 
@@ -49,6 +49,7 @@ class App extends Component {
   handleClick = (event, date, lines) => {
     event.preventDefault();
 
+
     console.log(lines);
     console.log(lines[0].exercise);
     const totalLog = [];
@@ -65,63 +66,8 @@ class App extends Component {
     //save to firebise
     const dbRef = firebase.database().ref();
     dbRef.push(newLogToBeAdded)
+    alert('Good job!💪 You log has been successfully added!')
   }
-
-  // handleClick = (event, date, lines) => {
-  //   event.preventDefault();
-  //   lines.forEach((line, i) => {
-  //     if (
-  //       lines[i].exercise &&
-  //       lines[i].sets > 0 &&
-  //       lines[i].reps > 0
-  //     ) {
-  //       console.log("hi1!!!")
-  //       this.setState({
-  //         valid: true
-
-
-  //       }, () => {
-  //         this.testFunction();
-  //       });
-  //       console.log(this.state.valid)
-  //     } {
-  //       console.log("nope")
-  //       this.setState({
-  //         valid: false
-
-  //       }, () => {
-  //         alert("Hey! You forgot something!");
-  //         return
-
-  //       })
-
-  //     }
-  //   })
-
-  // }
-
-  // testFunction(date, lines) {
-  //   if (this.state.valid === true) {
-  //     const totalLog = [];
-  //     totalLog.push(date);
-  //     totalLog.push(lines);
-  //     this.setState({
-  //       log: totalLog
-  //     })
-
-  //     const newLogToBeAdded = [];
-  //     newLogToBeAdded.push(totalLog);
-  //     console.log(newLogToBeAdded);
-  //     console.log(totalLog)
-  //     //save to firebise
-  //     const dbRef = firebase.database().ref();
-  //     dbRef.push(newLogToBeAdded)
-  //   }
-
-  // }
-
-
-
 
 
   removeEntry = (event) => {

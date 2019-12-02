@@ -17,6 +17,7 @@ class JournalForm extends Component {
   }
 
 
+
   handleChange = (event, i) => {
     event.preventDefault();
     const newLine = [...this.state.lines];
@@ -36,10 +37,10 @@ class JournalForm extends Component {
     })
   }
 
-  inputValidation = () => {
-
+  inputValidation = (event) => {
+    event.preventDefault();
+    const thing = event.target.id
     this.state.lines.forEach((line) => {
-
       if (
 
         this.state.date !== '' &&
@@ -48,11 +49,17 @@ class JournalForm extends Component {
         line.reps > 0
 
       ) {
+
         this.setState({
           validInput: true
 
         }, () => {
-          this.pushNewLine();
+
+          if (thing === "add") {
+            this.pushNewLine();
+
+          }
+
         });
       } else {
         this.setState({
@@ -70,6 +77,7 @@ class JournalForm extends Component {
   }
 
   pushNewLine() {
+
     if (this.state.validInput === true) {
       const newLine = [...this.state.lines];
       newLine.push({})
@@ -83,7 +91,7 @@ class JournalForm extends Component {
 
   handleAddMore = (event) => {
     event.preventDefault();
-    this.inputValidation();
+    this.inputValidation(event);
   }
 
 
@@ -109,21 +117,26 @@ class JournalForm extends Component {
             )
           })}
 
-          <button onClick={(event) => { this.handleAddMore(event) }}>Add more exercises</button>
+          <button id="add" onClick={(event) => { this.handleAddMore(event) }}>Add more exercises</button>
 
-          <button onClick={(event) => {
-            this.props.handleClick(event, this.state.date, this.state.lines);
-            // this.setState(prevState => ({
-            //   date: '',
-            //   lines: [{
-            //     exercise: '',
-            //     sets: 0,
-            //     reps: 0,
-            //     weights: 0,
-            //   },],
-            //   validInput: false
+          <button id="submit" onClick={(event) => {
+            this.inputValidation(event)
+            if (this.state.validInput) {
+              this.props.handleClick(event, this.state.date, this.state.lines);
+              this.setState(prevState => ({
+                date: '',
+                lines: [{
+                  exercise: '',
+                  sets: 0,
+                  reps: 0,
+                  weights: 0,
+                },],
+                validInput: false
 
-            // }))
+              }))
+
+            }
+
           }
           }>Log workout</button>
         </form>
