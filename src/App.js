@@ -14,7 +14,8 @@ class App extends Component {
     super();
     this.state = {
       journal: [],
-      log: []
+      log: [],
+      valid: false
     };
   }
 
@@ -48,16 +49,14 @@ class App extends Component {
   handleClick = (event, date, lines) => {
     event.preventDefault();
 
-
+    console.log(lines);
+    console.log(lines[0].exercise);
     const totalLog = [];
     totalLog.push(date);
     totalLog.push(lines);
     this.setState({
       log: totalLog
-
     })
-
-
 
     const newLogToBeAdded = [];
     newLogToBeAdded.push(totalLog);
@@ -66,9 +65,63 @@ class App extends Component {
     //save to firebise
     const dbRef = firebase.database().ref();
     dbRef.push(newLogToBeAdded)
-
-
   }
+
+  // handleClick = (event, date, lines) => {
+  //   event.preventDefault();
+  //   lines.forEach((line, i) => {
+  //     if (
+  //       lines[i].exercise &&
+  //       lines[i].sets > 0 &&
+  //       lines[i].reps > 0
+  //     ) {
+  //       console.log("hi1!!!")
+  //       this.setState({
+  //         valid: true
+
+
+  //       }, () => {
+  //         this.testFunction();
+  //       });
+  //       console.log(this.state.valid)
+  //     } {
+  //       console.log("nope")
+  //       this.setState({
+  //         valid: false
+
+  //       }, () => {
+  //         alert("Hey! You forgot something!");
+  //         return
+
+  //       })
+
+  //     }
+  //   })
+
+  // }
+
+  // testFunction(date, lines) {
+  //   if (this.state.valid === true) {
+  //     const totalLog = [];
+  //     totalLog.push(date);
+  //     totalLog.push(lines);
+  //     this.setState({
+  //       log: totalLog
+  //     })
+
+  //     const newLogToBeAdded = [];
+  //     newLogToBeAdded.push(totalLog);
+  //     console.log(newLogToBeAdded);
+  //     console.log(totalLog)
+  //     //save to firebise
+  //     const dbRef = firebase.database().ref();
+  //     dbRef.push(newLogToBeAdded)
+  //   }
+
+  // }
+
+
+
 
 
   removeEntry = (event) => {

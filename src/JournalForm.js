@@ -113,17 +113,17 @@ class JournalForm extends Component {
 
           <button onClick={(event) => {
             this.props.handleClick(event, this.state.date, this.state.lines);
-            this.setState(prevState => ({
-              date: '',
-              lines: [{
-                exercise: '',
-                sets: 0,
-                reps: 0,
-                weights: 0,
-              },],
-              validInput: false
+            // this.setState(prevState => ({
+            //   date: '',
+            //   lines: [{
+            //     exercise: '',
+            //     sets: 0,
+            //     reps: 0,
+            //     weights: 0,
+            //   },],
+            //   validInput: false
 
-            }))
+            // }))
           }
           }>Log workout</button>
         </form>
