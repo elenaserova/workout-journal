@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/workout-journal/static/css/main.f66fc47a.chunk.css",
+    "main.js": "/workout-journal/static/js/main.2a8d6f2c.chunk.js",
+    "main.js.map": "/workout-journal/static/js/main.2a8d6f2c.chunk.js.map",
+    "runtime-main.js": "/workout-journal/static/js/runtime-main.c3d8b7d0.js",
+    "runtime-main.js.map": "/workout-journal/static/js/runtime-main.c3d8b7d0.js.map",
+    "static/js/2.39504b4a.chunk.js": "/workout-journal/static/js/2.39504b4a.chunk.js",
+    "static/js/2.39504b4a.chunk.js.map": "/workout-journal/static/js/2.39504b4a.chunk.js.map",
+    "index.html": "/workout-journal/index.html",
+    "precache-manifest.b87781d9af387f721bcdf8d9a83368fa.js": "/workout-journal/precache-manifest.b87781d9af387f721bcdf8d9a83368fa.js",
+    "service-worker.js": "/workout-journal/service-worker.js",
+    "static/css/main.f66fc47a.chunk.css.map": "/workout-journal/static/css/main.f66fc47a.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c3d8b7d0.js",
+    "static/js/2.39504b4a.chunk.js",
+    "static/css/main.f66fc47a.chunk.css",
+    "static/js/main.2a8d6f2c.chunk.js"
+  ]
+}
