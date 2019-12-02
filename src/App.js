@@ -3,6 +3,10 @@ import './App.css';
 import firebase from "./firebase.js";
 import Header from './Header';
 import JournalForm from './JournalForm';
+import uuidv4 from 'uuid';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
+
 
 
 class App extends Component {
@@ -29,7 +33,7 @@ class App extends Component {
           entryId: key,
           entry: logs[key]
         }
-        newEntries.push(individualEntryObject);
+        newEntries.unshift(individualEntryObject);
       }
 
       this.setState({
@@ -70,6 +74,9 @@ class App extends Component {
 
 
   removeEntry = (event) => {
+
+
+
     const question = window.confirm("Are you sure?");
     if (question === true) {
       const dbRef = firebase.database().ref();
@@ -79,6 +86,7 @@ class App extends Component {
     }
   }
 
+
   render() {
     return (
       <div className='wrapper'>
@@ -87,6 +95,8 @@ class App extends Component {
           handleClick={this.handleClick}
 
         />
+
+
         <div className="logsContainer">
           {this.state.journal.map((dailyLog, i) => {
             return (
@@ -100,19 +110,24 @@ class App extends Component {
                     return (
 
 
-                      <ul>
-                        <li>{activity.exercise} {activity.sets} sets {activity.reps} reps {activity.weights} lb</li>
+                      <ul key={uuidv4()}>
+                        <li><FontAwesomeIcon icon={faCheck} />{activity.exercise} {activity.sets} sets {activity.reps} reps {activity.weights} lb</li>
                       </ul>
                     )
                   })
                 }
                 <button onClick={this.removeEntry} id={dailyLog.entryId}> Delete Log</button>
               </div>
+
+
             )
           })}
+
         </div>
 
+
       </div >
+
     );
   }
 

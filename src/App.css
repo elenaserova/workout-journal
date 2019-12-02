@@ -203,6 +203,17 @@ a {
   text-decoration: none;
 }
 
+ul {
+  list-style: none;
+}
+
+.logo {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 4rem;
+  color: #9bcadd;
+}
+
 img {
   max-width: 100%;
 }
@@ -217,7 +228,7 @@ h1 {
   font-family: 'Anton', sans-serif;
   font-size: 6rem;
   text-align: center;
-  padding: 20px 0px;
+  padding: 10px 0px;
 }
 
 button {
@@ -230,12 +241,23 @@ button {
   font-size: 2.2rem;
 }
 
+input {
+  border: 2px solid #012533;
+  padding: 5px 2px;
+}
+
 .intro {
   font-size: 3.2rem;
+  text-align: center;
 }
+
 .subIntro {
   font-size: 2.2rem;
   margin-top: 20px;
+}
+
+.howTo {
+  font-weight: bold;
 }
 
 .journal {
@@ -262,11 +284,9 @@ button {
 }
 
 .logsContainer {
-  /* display: flex;
-  flex-direction: row;
-  flex-wrap: wrap; */
-  column-count: 2;
-  column-gap: 4%;
+  column-count: 3;
+  column-gap: 2;
+  display: block;
 }
 
 .log {
@@ -274,7 +294,9 @@ button {
   color: #067cab;
   border: 4px solid #067cab;
   padding: 10px 20px;
-  /* width: 32%; */
+  margin-bottom: 10px;
+  page-break-inside: avoid;
+  break-inside: avoid-column;
 }
 
 .log button {
@@ -283,4 +305,55 @@ button {
 
 .log li {
   padding: 5px 0px;
+}
+
+.log button {
+  padding: 10px 10px;
+  font-size: 2rem;
+}
+
+.log p {
+  color: #012533;
+}
+
+@media(max-width:900px) {
+  .logsContainer {
+    column-count: 2;
+  }
+}
+
+@media(max-width:820px) {
+  .large {
+    width: 40%;
+    margin-right: 25px;
+  }
+}
+
+@media(max-width:660px) {
+  h1 {
+    font-size: 5rem;
+  }
+  .intro {
+    font-size: 2.5rem;
+  }
+  .logsContainer {
+    column-count: 1;
+  }
+  .large {
+    width: 100%;
+  }
+  .small {
+    width: 16%;
+    margin-left: 0px;
+    margin-bottom: 15px;
+  }
+  label {
+    margin-right: 5px;
+  }
+}
+
+@media(max-width:500px) {
+  h1 {
+    font-size: 4rem;
+  }
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 class ExerciseAllData extends Component {
 
 
@@ -9,7 +10,7 @@ class ExerciseAllData extends Component {
       <div>
 
 
-        <label htmlFor='exercise'></label>
+        <label htmlFor='exercise' aria-label="Exercise" className="visuallyHidden" ></label>
         <input
           type='text'
           name='exercise'

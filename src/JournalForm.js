@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ExerciseAllData from "./ExerciseAllData";
+import uuidv4 from 'uuid';
+
 class JournalForm extends Component {
   constructor() {
     super()
@@ -51,10 +53,10 @@ class JournalForm extends Component {
       console.log(this.state.lines)
       if (
 
-        // this.state.date !== '' &&
-        line.exercise !== '' &&
-        line.sets !== 0 &&
-        line.reps !== 0
+        this.state.date !== '' &&
+        line.exercise &&
+        line.sets > 0 &&
+        line.reps > 0
 
       ) {
         this.pushNewLine();
@@ -108,6 +110,7 @@ class JournalForm extends Component {
           {this.state.lines.map((line, i) => {
             return (
               <ExerciseAllData
+                key={uuidv4()}
                 handleChange={(event) => { this.handleChange(event, i) }}
                 exercise={this.state.lines[i].exercise}
                 sets={this.state.lines[i].sets}
