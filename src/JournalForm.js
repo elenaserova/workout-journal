@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ExerciseAllData from "./ExerciseAllData";
-import uuidv4 from 'uuid';
 
 class JournalForm extends Component {
   constructor() {
@@ -12,25 +11,16 @@ class JournalForm extends Component {
         sets: 0,
         reps: 0,
         weights: 0,
-      },]
+      },],
+      validInput: false
     }
   }
 
-  pushNewLine = () => {
-    const newLine = [...this.state.lines];
-    newLine.push({})
-    this.setState({
-      lines: newLine
-    })
-
-  }
 
   handleChange = (event, i) => {
     event.preventDefault();
     const newLine = [...this.state.lines];
     newLine[i][event.target.name] = event.target.value
-    console.log(newLine[i][event.target.name])
-    console.log(event.target.value)
 
 
     this.setState({
@@ -40,7 +30,6 @@ class JournalForm extends Component {
   }
 
   handleDateChange = (event) => {
-    console.log('you changed it', event.target.value)
     this.setState({
       date: event.target.value
 
@@ -59,12 +48,20 @@ class JournalForm extends Component {
         line.reps > 0
 
       ) {
-        this.pushNewLine();
+        this.setState({
+          validInput: true
 
-      }
-      else {
-        alert('You forgot something..please check your entry!')
-        return
+        }, () => {
+          this.pushNewLine();
+        });
+      } else {
+        this.setState({
+          validInput: false
+
+        }, () => {
+          alert("You forgot something...please check your entry!");
+
+        })
 
       }
 
@@ -72,28 +69,21 @@ class JournalForm extends Component {
 
   }
 
-  // if (
-  //   this.state.date !== '' ||
-  //   // this.state.lines.exercise !== '' ||
-  //   // this.state.lines.sets !== 0 ||
-  //   // this.state.lines.reps !== 0
+  pushNewLine() {
+    if (this.state.validInput === true) {
+      const newLine = [...this.state.lines];
+      newLine.push({})
+      this.setState({
+        lines: newLine
+      })
+    }
 
-  // ) {
-  //   this.pushNewLine();
-  // }
-  // else {
-
-  //   alert('You forgot something...please check your entry!')
-  //   return
-  // }
-  // console.log(this.state.lines.exercise.target.value)
-
+  }
 
 
   handleAddMore = (event) => {
     event.preventDefault();
     this.inputValidation();
-
   }
 
 
@@ -110,7 +100,7 @@ class JournalForm extends Component {
           {this.state.lines.map((line, i) => {
             return (
               <ExerciseAllData
-                key={uuidv4()}
+                key={`line-${i}`}
                 handleChange={(event) => { this.handleChange(event, i) }}
                 exercise={this.state.lines[i].exercise}
                 sets={this.state.lines[i].sets}
@@ -130,16 +120,13 @@ class JournalForm extends Component {
                 sets: 0,
                 reps: 0,
                 weights: 0,
-              },]
+              },],
+              validInput: false
 
             }))
           }
           }>Log workout</button>
-
-
-
         </form>
-
       </div>
     )
   }

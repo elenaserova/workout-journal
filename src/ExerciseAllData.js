@@ -14,7 +14,6 @@ class ExerciseAllData extends Component {
         <input
           type='text'
           name='exercise'
-          placeholder="e.g. squats"
           required
           onChange={this.props.handleChange}
           value={this.props.exercise}
@@ -47,7 +46,6 @@ class ExerciseAllData extends Component {
           type='number'
           min="0"
           name='weights'
-          value='0'
           onChange={this.props.handleChange}
           value={this.props.weights}
           className="small"

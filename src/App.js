@@ -71,12 +71,7 @@ class App extends Component {
   }
 
 
-
-
   removeEntry = (event) => {
-
-
-
     const question = window.confirm("Are you sure?");
     if (question === true) {
       const dbRef = firebase.database().ref();
