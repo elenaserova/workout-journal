@@ -241,6 +241,10 @@ button {
   font-size: 2.2rem;
 }
 
+button:hover, button:focus {
+  background-color: #006400;
+}
+
 input {
   border: 2px solid #012533;
   padding: 5px 2px;
@@ -312,8 +316,16 @@ input {
   font-size: 2rem;
 }
 
-.log p {
+.log p, .highlite {
   color: #012533;
+}
+
+.highlite, .highliteEx {
+  font-weight: bold;
+}
+
+.highliteEx {
+  color: #330f01;
 }
 
 @media(max-width:900px) {

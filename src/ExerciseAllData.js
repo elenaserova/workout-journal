@@ -15,7 +15,7 @@ class ExerciseAllData extends Component {
           type='text'
           name='exercise'
           placeholder="e.g. squats"
-          // required
+          required
           onChange={this.props.handleChange}
           value={this.props.exercise}
           className="large"
@@ -25,7 +25,7 @@ class ExerciseAllData extends Component {
           type='number'
           min="1"
           name='sets'
-          // required
+          required
           onChange={this.props.handleChange}
           value={this.props.sets}
           className="small"
@@ -36,7 +36,7 @@ class ExerciseAllData extends Component {
           type='number'
           min="1"
           name='reps'
-          // required
+          required
           onChange={this.props.handleChange}
           value={this.props.reps}
           className="small"

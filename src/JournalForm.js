@@ -50,7 +50,7 @@ class JournalForm extends Component {
   inputValidation = () => {
 
     this.state.lines.forEach((line) => {
-      console.log(this.state.lines)
+
       if (
 
         this.state.date !== '' &&
@@ -60,10 +60,10 @@ class JournalForm extends Component {
 
       ) {
         this.pushNewLine();
-        console.log(this.state.lines)
+
       }
       else {
-        alert('You forgot something')
+        alert('You forgot something..please check your entry!')
         return
 
       }

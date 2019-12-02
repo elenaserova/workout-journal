@@ -111,7 +111,7 @@ class App extends Component {
 
 
                       <ul key={uuidv4()}>
-                        <li><FontAwesomeIcon icon={faCheck} />{activity.exercise} {activity.sets} sets {activity.reps} reps {activity.weights} lb</li>
+                        <li><FontAwesomeIcon icon={faCheck} /><span className="highliteEx">{activity.exercise}</span><span className="highlite"> {activity.sets} </span > sets <span className="highlite">{activity.reps}</span> reps <span className="highlite">{activity.weights}</span> lb</li>
                       </ul>
                     )
                   })
