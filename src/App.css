@@ -332,6 +332,15 @@ select {
   width: 50%;
 }
 
+footer p {
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 25px;
+  padding: 10px 0;
+  background-color: #067cab;
+}
+
 @media(max-width:900px) {
   .logsContainer {
     column-count: 2;
