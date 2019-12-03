@@ -67,7 +67,7 @@ class JournalForm extends Component {
 
         }, () => {
           alert("You forgot something...please check your entry!");
-
+          return
         })
 
       }
@@ -102,9 +102,6 @@ class JournalForm extends Component {
           <label htmlFor='date' className='date'>Date: </label>
           <input type='date' name='date' onChange={this.handleDateChange} value={this.state.date} />
           <p>Exercises:</p>
-
-
-
           {this.state.lines.map((line, i) => {
             return (
               <ExerciseAllData
@@ -132,7 +129,6 @@ class JournalForm extends Component {
                   weights: 0,
                 },],
                 validInput: false
-
               }))
 
             }

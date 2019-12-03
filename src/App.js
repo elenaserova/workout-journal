@@ -27,7 +27,6 @@ class App extends Component {
     // listen on the dbref for when the value of the database changes
     dbRef.on("value", snapshot => {
       const logs = snapshot.val();
-      console.log(logs);
       const newEntries = [];
       for (let key in logs) {
         const individualEntryObject = {
@@ -48,10 +47,6 @@ class App extends Component {
 
   handleClick = (event, date, lines) => {
     event.preventDefault();
-
-
-    console.log(lines);
-    console.log(lines[0].exercise);
     const totalLog = [];
     totalLog.push(date);
     totalLog.push(lines);
@@ -61,8 +56,6 @@ class App extends Component {
 
     const newLogToBeAdded = [];
     newLogToBeAdded.push(totalLog);
-    console.log(newLogToBeAdded);
-    console.log(totalLog)
     //save to firebise
     const dbRef = firebase.database().ref();
     dbRef.push(newLogToBeAdded)

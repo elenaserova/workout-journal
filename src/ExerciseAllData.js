@@ -8,8 +8,6 @@ class ExerciseAllData extends Component {
   render() {
     return (
       <div>
-
-
         <label htmlFor='exercise' aria-label="Exercise" className="visuallyHidden" ></label>
         <input
           type='text'

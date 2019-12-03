@@ -328,6 +328,10 @@ input {
   color: #330f01;
 }
 
+select {
+  width: 50%;
+}
+
 @media(max-width:900px) {
   .logsContainer {
     column-count: 2;
