@@ -3,10 +3,9 @@ import './App.css';
 import firebase from "./firebase.js";
 import Header from './Header';
 import JournalForm from './JournalForm';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
-import uuidv4 from 'uuid';
+import Log from './Log';
 import Footer from './Footer';
+import uuidv4 from 'uuid';
 
 
 
@@ -82,39 +81,14 @@ class App extends Component {
           <Header />
           <JournalForm
             handleClick={this.handleClick}
-
           />
-
-
           <div className="logsContainer">
             {this.state.journal.map((dailyLog, i) => {
               return (
-
-
-                < div className='log' key={i} >
-                  <p>Date: {dailyLog.entry[0][0]}</p>
-
-                  {
-                    dailyLog.entry[0][1].map((activity) => {
-                      return (
-
-
-                        <ul key={uuidv4()}>
-                          <li><FontAwesomeIcon icon={faCheck} /><span className="highliteEx">{activity.exercise}</span><span className="highlite"> {activity.sets} </span > sets <span className="highlite">{activity.reps}</span> reps <span className="highlite">{activity.weights}</span> lb</li>
-                        </ul>
-                      )
-                    })
-                  }
-                  <button onClick={this.removeEntry} id={dailyLog.entryId}> Delete Log</button>
-                </div>
-
-
+                <Log key={uuidv4()} dailyLog={dailyLog} removeEntry={this.removeEntry}/>
               )
             })}
-
           </div>
-
-
         </div >
         <Footer />
       </div>

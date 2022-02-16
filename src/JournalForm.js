@@ -16,82 +16,79 @@ class JournalForm extends Component {
     }
   }
 
-
-
   handleChange = (event, i) => {
     event.preventDefault();
     const newLine = [...this.state.lines];
     newLine[i][event.target.name] = event.target.value
 
-
     this.setState({
       lines: newLine
-
     })
   }
 
   handleDateChange = (event) => {
     this.setState({
       date: event.target.value
-
     })
   }
 
   inputValidation = (event) => {
     event.preventDefault();
-    const thing = event.target.id
+    const btn = event.target.id
     this.state.lines.forEach((line) => {
       if (
-
         this.state.date !== '' &&
         line.exercise &&
         line.sets > 0 &&
         line.reps > 0
-
       ) {
 
         this.setState({
           validInput: true
-
         }, () => {
-
-          if (thing === "add") {
+          if (btn === "add") {
             this.pushNewLine();
-
           }
-
         });
       } else {
         this.setState({
           validInput: false
-
         }, () => {
           alert("You forgot something...please check your entry!");
           return
         })
-
       }
-
     })
-
   }
 
   pushNewLine() {
-
-    if (this.state.validInput === true) {
-      const newLine = [...this.state.lines];
-      newLine.push({})
-      this.setState({
-        lines: newLine
-      })
-    }
-
+    const linesArr = [...this.state.lines];
+    this.state.validInput === true && linesArr.push({});
+    this.setState({
+      lines: linesArr
+    })
   }
 
 
   handleAddMore = (event) => {
     event.preventDefault();
     this.inputValidation(event);
+  }
+
+  removeLine = (line, event) => {
+    const allLines = [...this.state.lines];
+    const clearedLines = allLines.filter(filterdLine => filterdLine !== line);
+    clearedLines.length < 1 && clearedLines.push({
+      exercise: '',
+      sets: 0,
+      reps: 0,
+      weights: 0,
+    });  
+
+    this.setState({
+      lines: clearedLines
+    }, () => {});
+    event.preventDefault();
   }
 
 
@@ -110,7 +107,9 @@ class JournalForm extends Component {
                 exercise={this.state.lines[i].exercise}
                 sets={this.state.lines[i].sets}
                 reps={this.state.lines[i].reps}
-                weights={this.state.lines[i].weights} />
+                weights={this.state.lines[i].weights}
+                removeLine={(event) => this.removeLine(line, event)}
+                />
             )
           })}
 

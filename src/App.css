@@ -278,7 +278,7 @@ input {
 }
 
 .large {
-  width: 45%;
+  width: 40%;
   margin: 10px 40px 10px 0px;
 }
 
@@ -341,6 +341,18 @@ footer p {
   background-color: #067cab;
 }
 
+.btnRemove {
+  padding: 5px 15px;
+  margin-left: 10px;
+}
+
+@media(max-width:1187px) {
+  .btnRemove {
+    margin-top: 0px;
+    margin-left: 0px;
+  }
+}
+
 @media(max-width:900px) {
   .logsContainer {
     column-count: 2;
@@ -358,20 +370,25 @@ footer p {
   h1 {
     font-size: 5rem;
   }
+
   .intro {
     font-size: 2.5rem;
   }
+
   .logsContainer {
     column-count: 1;
   }
+
   .large {
     width: 100%;
   }
+
   .small {
     width: 16%;
     margin-left: 0px;
     margin-bottom: 15px;
   }
+
   label {
     margin-right: 5px;
   }

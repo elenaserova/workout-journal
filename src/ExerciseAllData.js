@@ -1,11 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-
-class ExerciseAllData extends Component {
-
-
-
-  render() {
+function ExerciseAllData(props) {
     return (
       <div>
         <label htmlFor='exercise' aria-label="Exercise" className="visuallyHidden" ></label>
@@ -13,8 +8,8 @@ class ExerciseAllData extends Component {
           type='text'
           name='exercise'
           required
-          onChange={this.props.handleChange}
-          value={this.props.exercise}
+          onChange={props.handleChange}
+          value={props.exercise || ''}
           className="large"
         />
 
@@ -23,8 +18,8 @@ class ExerciseAllData extends Component {
           min="1"
           name='sets'
           required
-          onChange={this.props.handleChange}
-          value={this.props.sets}
+          onChange={props.handleChange}
+          value={props.sets || ''}
           className="small"
         />
         <label htmlFor='sets'>sets</label>
@@ -34,8 +29,8 @@ class ExerciseAllData extends Component {
           min="1"
           name='reps'
           required
-          onChange={this.props.handleChange}
-          value={this.props.reps}
+          onChange={props.handleChange}
+          value={props.reps || ''}
           className="small"
         />
         <label htmlFor='reps'>reps</label>
@@ -44,13 +39,14 @@ class ExerciseAllData extends Component {
           type='number'
           min="0"
           name='weights'
-          onChange={this.props.handleChange}
-          value={this.props.weights}
+          onChange={props.handleChange}
+          value={props.weights || ''}
           className="small"
         />
         <label htmlFor='weights'>lb</label>
+        <button onClick={props.removeLine} className="btnRemove">Remove</button>
       </div>
     )
   }
-}
+
 export default ExerciseAllData;
